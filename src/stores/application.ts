@@ -73,6 +73,29 @@ export const useApplicationStore = defineStore({
       } finally {
         this.loading = false;
       }
-    }
+    },
+    async addApplication(application: ApplicationCore) {
+      this.loading = true;
+      try {
+        const response = await fetch(`http://localhost:3000/candidatures`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(application),
+        });
+
+        if (response.status === 201) {
+          const application = await response.json();
+          this.applications.push(application);
+        } else {
+          throw new Error('Error while adding application');
+        }
+      } catch (error: any) {
+        this.error = error;
+      } finally {
+        this.loading = false;
+      }
+    },
   },
 });

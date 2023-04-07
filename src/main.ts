@@ -1,8 +1,8 @@
 import { createApp } from "vue";
-import { createPinia } from 'pinia';
 import App from "./App.vue";
 import router from "./router";
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
+import pinia from './stores/store';
 
 // import "~/styles/element/index.scss";
 
@@ -18,14 +18,14 @@ import 'uno.css'
 // If you want to use ElMessage, import it.
 import "element-plus/theme-chalk/src/message.scss"
 
-const pinia = createPinia();
-const app = createApp(App);
+const app = createApp(App).use(router).use(pinia);
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
 
 // app.use(ElementPlus);
-app.use(router);
-app.use(pinia);
-app.mount("#app");
+
+router.isReady().then(() => {
+  app.mount('#app');
+});

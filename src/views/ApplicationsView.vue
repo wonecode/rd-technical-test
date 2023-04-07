@@ -4,36 +4,42 @@ import { useApplicationStore } from '../stores/application';
 import { useUserStore } from '../stores/user';
 import { ref } from 'vue'
 
-const { applications, loading, error } = storeToRefs(useApplicationStore())
-const { user } = storeToRefs(useUserStore())
-
-const { fetchApplications, updateApplication } = useApplicationStore()
-const { fetchUserById } = useUserStore()
-
-const dialogVisible = ref(false)
-
 export default {
   name: "ApplicationsView",
-  data() {
+  setup() {
+
+    const { applications, loading, error } = storeToRefs(useApplicationStore())
+    const { user } = storeToRefs(useUserStore())
+
+    const { fetchApplications, updateApplication } = useApplicationStore()
+    const { fetchUserById } = useUserStore()
+
     return {
       applications,
       loading,
       error,
-      dialogVisible,
+      fetchApplications,
+      updateApplication,
+      fetchUserById,
       user
+    }
+  },
+  data() {
+    return {
+      dialogVisible: false,
     };
   },
   async created() {
-    await fetchApplications()
+    await this.fetchApplications()
   },
   methods: {
     async handleDialog(id: number) {
-      await fetchUserById(id);
-      dialogVisible.value = true;
+      await this.fetchUserById(id);
+      this.dialogVisible = true;
     },
     async handleStatus(id: number, statut: string) {
-      await updateApplication(id, statut);
-      await fetchApplications();
+      await this.updateApplication(id, statut);
+      await this.fetchApplications();
     }
   }
 };
@@ -43,7 +49,7 @@ export default {
   <div class="px-16 text-left">
     <h1>Liste des candidatures</h1>
 
-    <el-table class="table" :data="applications" height="80%" width="100%">
+    <el-table class="table" :data="applications" height="70vh" width="100%">
       <el-table-column prop="id" label="Référence" width="120" />
       <el-table-column prop="statut" label="Statut" width="150">
         <template #default="{ row }">
@@ -129,4 +135,5 @@ export default {
   font-size: 0.8rem;
   color: #777777;
   text-transform: uppercase;
-}</style>
+}
+</style>

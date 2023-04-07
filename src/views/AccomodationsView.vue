@@ -1,61 +1,73 @@
 <script lang="ts">
 import { storeToRefs } from 'pinia'
 import { useAccomodationStore } from '../stores/accomodation';
-
-const { accomodations, loading, error } = storeToRefs(useAccomodationStore())
-const { fetchAccomodations } = useAccomodationStore()
-
-fetchAccomodations()
+import { InfoFilled } from '@element-plus/icons-vue';
 
 export default {
   name: "AccomodationsView",
-  data() {
+  setup() {
+    const { accomodations, loading, error } = storeToRefs(useAccomodationStore())
+    const { fetchAccomodations, deleteAccomodation } = useAccomodationStore()
+
     return {
       accomodations,
       loading,
       error,
-    };
+      fetchAccomodations,
+      deleteAccomodation,
+    }
   },
+  data() {
+    return {
+      InfoFilled,
+    }
+  },
+  async created() {
+    await this.fetchAccomodations()
+  },
+  methods: {
+    async deleteAccomodation(id: number) {
+      try {
+        await this.deleteAccomodation(id)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+  }
 };
 </script>
 
 <template>
   <div class="px-16 text-left">
-    <h1>Liste des logements</h1>
+    <h1 class="mb-0">Liste des logements</h1>
+    <h2 class="mt-1 font-light">{{ accomodations.length }} biens disponibles</h2>
 
     <p v-if="loading">Loading posts...</p>
     <p v-if="error">{{ error.message }}</p>
 
     <div>
-      <div class="card" v-for="accomodation in accomodations" :key="accomodation.id">
+      <div class="card rounded" v-for="accomodation in accomodations" :key="accomodation.id">
         <img :src="accomodation.image" alt="image" class="card__image" />
         <div class="card__content">
           <div>
             <h2>{{ accomodation.type }} {{ accomodation.nb_pieces }} pièces {{ accomodation.superficie }} m²</h2>
-            <p class="card__subtitle">{{ accomodation.adresse }} {{ accomodation.cp }} {{ accomodation.ville }}</p>
-            <p class="card__price">{{ accomodation.prix }} €</p>
+            <p class="card__subtitle">{{ accomodation.cp }} {{ accomodation.ville }}</p>
+            <p class="card__price">{{ accomodation.prix }} € <span class="text-sm font-normal text-gray-500">/ par
+                mois</span></p>
             <p>{{ accomodation.description }}</p>
           </div>
 
           <div class="card__actions">
-            <el-button type="primary">
-              <el-icon style="vertical-align: middle">
-                <Search />
-              </el-icon>
-              <span style="vertical-align: middle"> En savoir plus</span>
-            </el-button>
-            <el-button type="info">
-              <el-icon style="vertical-align: middle">
-                <Edit />
-              </el-icon>
-              <span style="vertical-align: middle"> Modifier</span>
-            </el-button>
-            <el-button type="danger">
-              <el-icon style="vertical-align: middle">
-                <Delete />
-              </el-icon>
-              <span style="vertical-align: middle"> Supprimer</span>
-            </el-button>
+            <router-link :to="'/accomodations/' + accomodation.id" class="mr-3 decoration-none">
+              <el-button type="primary">
+                <el-icon style="vertical-align: middle">
+                  <Search />
+                </el-icon>
+                <span style="vertical-align: middle">
+                  En savoir plus
+                </span>
+              </el-button>
+            </router-link>
           </div>
         </div>
 
@@ -64,7 +76,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .card {
   display: flex;
   flex-direction: row;

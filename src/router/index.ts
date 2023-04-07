@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import AccomodationsView from '../views/AccomodationsView.vue';
+import ApplicationsView from '../views/ApplicationsView.vue';
+import AccomodationDetailsView from '../views/AccomodationDetailsView.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -6,14 +9,22 @@ const router = createRouter({
     {
       path: '/',
       name: 'accomodations',
-      component: () =>
-        import(/* webpackChunkName: "accomodations" */ '../views/AccomodationsView.vue'),
+      component: AccomodationsView,
     },
     {
-      path: '/applications',
-      name: 'applications',
-      component: () =>
-        import(/* webpackChunkName: "applications" */ '../views/ApplicationsView.vue'),
+      path: '/accomodations/:id',
+      name: 'accomodation-details',
+      component: AccomodationDetailsView,
+    },
+    {
+      path: '/admin/applications',
+      name: 'admin-applications',
+      component: ApplicationsView,
+    },
+    {
+      path: '/admin/accomodations',
+      name: 'admin-accomodations',
+      component: ApplicationsView,
     },
     {
       path: '/:catchAll(.*)*',

@@ -5,7 +5,7 @@ interface ApplicationCore {
   id: number;
   appartementId: number;
   utilisateurId: number;
-  date: string;
+  date: Date | string;
   statut: string;
 }
 

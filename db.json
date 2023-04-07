@@ -50,24 +50,24 @@
   ],
   "candidatures": [
     {
-      "id": 1,
+      "id": 33398,
       "appartementId": 1,
       "utilisateurId": 1,
-      "date": "2023-03-30",
+      "date": "2023-04-07T15:47:58.568Z",
       "statut": "en_attente"
     },
     {
-      "id": 2,
+      "id": 50399,
       "appartementId": 2,
-      "utilisateurId": 2,
-      "date": "2023-04-01",
-      "statut": "acceptee"
+      "utilisateurId": 1,
+      "date": "2023-04-07T16:00:40.142Z",
+      "statut": "en_attente"
     },
     {
-      "id": 3,
+      "id": 93996,
       "appartementId": 1,
-      "utilisateurId": 3,
-      "date": "2023-04-02",
+      "utilisateurId": 2,
+      "date": "2023-04-07T16:02:05.375Z",
       "statut": "en_attente"
     }
   ]
