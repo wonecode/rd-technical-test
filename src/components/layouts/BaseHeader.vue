@@ -1,28 +1,40 @@
 <script lang="ts" setup>
-import { toggleDark } from '~/composables';
+import { ref, reactive, toRefs } from 'vue'
+
+const activeIndex = ref('1')
+const handleSelect = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+
+const state = reactive({
+  circleUrl:
+    'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+})
+
+const { circleUrl } = toRefs(state)
 </script>
 
 <template>
-  <el-menu class="el-menu-demo" mode="horizontal">
-    <el-menu-item index="1">Element Plus</el-menu-item>
-    <el-sub-menu index="2">
-      <template #title>Workspace</template>
-      <el-menu-item index="2-1">item one</el-menu-item>
-      <el-menu-item index="2-2">item two</el-menu-item>
-      <el-menu-item index="2-3">item three</el-menu-item>
-      <el-sub-menu index="2-4">
-        <template #title>item four</template>
-        <el-menu-item index="2-4-1">item one</el-menu-item>
-        <el-menu-item index="2-4-2">item two</el-menu-item>
-        <el-menu-item index="2-4-3">item three</el-menu-item>
-      </el-sub-menu>
-    </el-sub-menu>
-    <el-menu-item index="3" disabled>Info</el-menu-item>
-    <el-menu-item index="4">Orders</el-menu-item>
-    <el-menu-item h="full" @click="toggleDark()">
-      <button class="border-none w-full bg-transparent cursor-pointer" style="height: var(--ep-menu-item-height);">
-        <i inline-flex i="dark:ep-moon ep-sunny" />
-      </button>
+  <el-menu :default-active="activeIndex" class="el-menu-demo items-center pr-3" mode="horizontal" :ellipsis="false"
+    @select="handleSelect">
+    <el-menu-item index="0">RD Immo</el-menu-item>
+    <div class="flex-grow" />
+    <el-menu-item index="1">
+      <router-link to="/" class="decoration-none">
+        Liste des logements
+      </router-link>
     </el-menu-item>
+    <el-menu-item index="2">
+      <router-link to="/applications" class="decoration-none">
+        Liste des candidatures
+      </router-link>
+    </el-menu-item>
+    <el-tooltip class="box-item" effect="dark" content="Connecté en tant que Jean">
+      <div class="demo-basic--circle pl-3">
+        <div class="block">
+          <el-avatar :size="35" :src="circleUrl" />
+        </div>
+      </div>
+    </el-tooltip>
   </el-menu>
 </template>

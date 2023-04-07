@@ -1,6 +1,6 @@
 {
-  "name": "element-plus-vite-starter",
-  "private": true,
+  "name": "rd-technical-test",
+  "private": false,
   "version": "0.1.0",
   "scripts": {
     "dev": "vite",
@@ -10,8 +10,12 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
     "element-plus": "^2.2.13",
-    "vue": "^3.2.36"
+    "json-server": "^0.17.3",
+    "pinia": "^2.0.33",
+    "vue": "^3.2.36",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@iconify-json/ep": "^1.1.4",

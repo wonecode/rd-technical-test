@@ -1,6 +1,6 @@
 $--colors: (
   "primary": (
-    "base": green,
+    "base": #0F93AA,
   ),
   "success": (
     "base": #21ba45,
@@ -37,6 +37,3 @@ $--colors: (
 
 // You can comment it to hide debug info.
 // @debug $--colors;
-
-// custom dark variables
-@use "./dark.scss";

@@ -1,0 +1,74 @@
+{
+  "appartements": [
+    {
+      "id": 1,
+      "type": "maison",
+      "adresse": "123 rue des Fleurs",
+      "cp": "67000",
+      "ville": "Strasbourg",
+      "prix": 1000,
+      "superficie": 60,
+      "nb_pieces": 3,
+      "description": "Bel appartement lumineux avec vue sur le parc",
+      "image": "https://cdn.pixabay.com/photo/2017/09/09/18/25/living-room-2732939_1280.jpg"
+    },
+    {
+      "id": 2,
+      "type": "appartement",
+      "adresse": "12 rue des Rosiers",
+      "cp": "68000",
+      "ville": "Colmar",
+      "prix": 750,
+      "superficie": 45,
+      "nb_pieces": 2,
+      "description": "Bel appartement lumineux avec vue sur le parc",
+      "image": "https://cdn.pixabay.com/photo/2017/03/22/17/39/kitchen-2165756_1280.jpg"
+    }
+  ],
+  "utilisateurs": [
+    {
+      "id": 1,
+      "nom": "Dupont",
+      "prenom": "Jean",
+      "email": "jean.dupont@example.com",
+      "telephone": "01 23 45 67 89"
+    },
+    {
+      "id": 2,
+      "nom": "Martin",
+      "prenom": "Sophie",
+      "email": "sophie.martin@example.com",
+      "telephone": "06 12 34 56 78"
+    },
+    {
+      "id": 3,
+      "nom": "Lefevre",
+      "prenom": "Pierre",
+      "email": "pierre.lefevre@example.com",
+      "telephone": "06 98 76 54 32"
+    }
+  ],
+  "candidatures": [
+    {
+      "id": 1,
+      "appartementId": 1,
+      "utilisateurId": 1,
+      "date": "2023-03-30",
+      "statut": "en_attente"
+    },
+    {
+      "id": 2,
+      "appartementId": 2,
+      "utilisateurId": 2,
+      "date": "2023-04-01",
+      "statut": "acceptee"
+    },
+    {
+      "id": 3,
+      "appartementId": 1,
+      "utilisateurId": 3,
+      "date": "2023-04-02",
+      "statut": "en_attente"
+    }
+  ]
+}
