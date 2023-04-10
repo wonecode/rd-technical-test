@@ -6,7 +6,7 @@
       "adresse": "123 rue des Fleurs",
       "cp": "67000",
       "ville": "Strasbourg",
-      "prix": 1100,
+      "prix": 1200,
       "superficie": 60,
       "nb_pieces": 3,
       "description": "Bel appartement lumineux avec vue sur le parc",
@@ -110,6 +110,34 @@
       "utilisateurId": 2,
       "date": "2023-04-10T17:41:45.670Z",
       "statut": "acceptee"
+    },
+    {
+      "id": 63823,
+      "appartementId": 687,
+      "utilisateurId": 3,
+      "date": "2023-04-10T18:23:53.565Z",
+      "statut": "en_attente"
+    },
+    {
+      "id": 40575,
+      "appartementId": 687,
+      "utilisateurId": 1,
+      "date": "2023-04-10T18:23:54.182Z",
+      "statut": "en_attente"
+    },
+    {
+      "id": 7398,
+      "appartementId": 2,
+      "utilisateurId": 2,
+      "date": "2023-04-10T18:24:08.664Z",
+      "statut": "en_attente"
+    },
+    {
+      "id": 30622,
+      "appartementId": 2,
+      "utilisateurId": 3,
+      "date": "2023-04-10T18:24:09.265Z",
+      "statut": "en_attente"
     }
   ]
 }

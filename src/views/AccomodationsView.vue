@@ -1,10 +1,18 @@
 <template>
-  <div class="px-16 text-left">
-    <h1 class="mb-0">Liste des logements</h1>
-    <h2 class="mt-1 font-light">{{ accomodations.length }} biens disponibles</h2>
+  <div class="px-16 pb-10 text-left">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="mb-0">Liste des logements</h1>
+        <h2 class="mt-1 font-light">{{ accomodations.length }} biens disponibles</h2>
+      </div>
 
-    <p v-if="loading">Loading posts...</p>
-    <p v-if="error">{{ error.message }}</p>
+      <el-select v-model="filter" placeholder="Filtrer les logements" size="large">
+        <el-option value="price" label="Prix" />
+        <el-option value="surface" label="Surface" />
+        <el-option value="rooms" label="Pièces" />
+        <el-option value="localisation" label="Localisation" />
+      </el-select>
+    </div>
 
     <div>
       <div class="card rounded" v-for="accomodation in accomodations" :key="accomodation.id">
@@ -46,7 +54,7 @@ export default {
   name: "AccomodationsView",
   setup() {
     const { accomodations, loading, error } = storeToRefs(useAccomodationStore())
-    const { fetchAccomodations, deleteAccomodation } = useAccomodationStore()
+    const { fetchAccomodations, deleteAccomodation, getAccomodationsSortedByPrice, getAccomodationsSortedByNbRooms, getAccomodationsSortedBySurface, getAccomodationSortedByCity } = useAccomodationStore()
 
     return {
       accomodations,
@@ -54,22 +62,38 @@ export default {
       error,
       fetchAccomodations,
       deleteAccomodation,
+      getAccomodationsSortedByPrice,
+      getAccomodationsSortedByNbRooms,
+      getAccomodationsSortedBySurface,
+      getAccomodationSortedByCity
     }
   },
   data() {
     return {
       InfoFilled,
+      filter: '',
     }
   },
-  async created() {
+  async mounted() {
     await this.fetchAccomodations()
   },
   methods: {
     async deleteAccomodation(id: number) {
-      try {
-        await this.deleteAccomodation(id)
-      } catch (e) {
-        console.log(e)
+      await this.deleteAccomodation(id);
+    }
+  },
+  watch: {
+    filter: {
+      handler: function (item) {
+        if (item === 'price') {
+          this.accomodations = this.getAccomodationsSortedByPrice()
+        } else if (item === 'surface') {
+          this.accomodations = this.getAccomodationsSortedBySurface()
+        } else if (item === 'rooms') {
+          this.accomodations = this.getAccomodationsSortedByNbRooms()
+        } else if (item === 'localisation') {
+          this.accomodations = this.getAccomodationSortedByCity()
+        }
       }
     }
   }

@@ -16,6 +16,24 @@ export const useAccomodationStore = defineStore({
     getAccomodation: (state) => {
       return () => state.accomodation;
     },
+    getAccomodationsSortedByPrice: (state) => {
+      return () => {
+        return state.accomodations.sort((a, b) => a.prix - b.prix);
+      };
+    },
+    getAccomodationsSortedBySurface: (state) => {
+      return () => {
+        return state.accomodations.sort((a, b) => b.superficie - a.superficie);
+      };
+    },
+    getAccomodationsSortedByNbRooms: (state) => {
+      return () => {
+        return state.accomodations.sort((a, b) => b.nb_pieces - a.nb_pieces);
+      };
+    },
+    getAccomodationSortedByCity: (state) => {
+      return () => state.accomodations.sort((a, b) => a.ville.localeCompare(b.ville));
+    }
   },
   actions: {
     async fetchAccomodations() {

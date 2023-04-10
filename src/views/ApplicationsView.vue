@@ -108,7 +108,7 @@ export default {
       dialogVisible: false,
     };
   },
-  async created() {
+  async mounted() {
     await this.fetchApplications()
   },
   methods: {

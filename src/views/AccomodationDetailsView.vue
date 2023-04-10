@@ -44,7 +44,7 @@ export default {
       applications,
     }
   },
-  async created() {
+  async mounted() {
     await this.fetchAccomodation(this.$route.params.id);
   },
   methods: {

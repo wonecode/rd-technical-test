@@ -113,7 +113,7 @@ export default {
       dialogMode: '',
     };
   },
-  async created() {
+  async mounted() {
     await this.fetchAccomodations();
     await this.fetchApplications();
   },
