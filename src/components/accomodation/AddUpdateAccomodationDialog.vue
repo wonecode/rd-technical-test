@@ -59,7 +59,7 @@ export default defineComponent({
     },
   },
   setup() {
-    const { createAccomodation, updateAccomodation} = useAccomodationStore();
+    const { createAccomodation, updateAccomodation } = useAccomodationStore();
     const { accomodation } = storeToRefs(useAccomodationStore());
 
     const initialForm = {
@@ -101,10 +101,9 @@ export default defineComponent({
   },
   methods: {
     handleOpen() {
-      this.$nextTick(() => {
-        // Appeler la méthode mounted() ici
-        this.mounted();
-      });
+      if (this.mode === 'update') {
+        this.form = this.accomodation;
+      }
     },
     handleClose() {
       this.form = this.initialForm;
@@ -116,11 +115,6 @@ export default defineComponent({
       } else {
         await this.updateAccomodation(this.form);
         this.handleCloseDialog();
-      }
-    },
-    mounted() {
-      if (this.mode === 'update') {
-        this.form = this.accomodation;
       }
     },
   },

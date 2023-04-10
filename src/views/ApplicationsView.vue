@@ -39,7 +39,6 @@ export default {
     },
     async handleStatus(id: number, statut: string) {
       await this.updateApplication(id, statut);
-      await this.fetchApplications();
     }
   }
 };
@@ -63,7 +62,7 @@ export default {
           {{ new Date(row.date).toLocaleDateString("fr") }}
         </template>
       </el-table-column>
-      <el-table-column prop="appartement" label="Logement" width="320">
+      <el-table-column prop="appartement" label="Logement">
         <template #default="{ row }">
           <p class="accomodation">
             {{ row.appartement.type }} {{ row.appartement.nb_pieces }} pièces {{ row.appartement.superficie }} m² : {{

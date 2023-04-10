@@ -62,9 +62,9 @@ export const useApplicationStore = defineStore({
         });
 
         if (response.status === 200) {
-          const application = await response.json();
-          const index = this.applications.findIndex((application) => application.id === id);
-          this.applications[index] = application;
+          const index = this.applications.findIndex((a) => a.id === id);
+          this.applications.splice(index, 1, await response.json());
+          await this.fetchApplications();
         }
       } catch (error: any) {
         this.error = error;

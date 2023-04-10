@@ -91,7 +91,7 @@ export const useAccomodationStore = defineStore({
         });
         if (response.status === 200) {
           const index = this.accomodations.findIndex(
-            (accomodation) => accomodation.id === accomodation.id
+            (a) => a.id === accomodation.id
           );
           this.accomodations.splice(index, 1, await response.json());
         }

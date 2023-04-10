@@ -6,7 +6,7 @@
       "adresse": "123 rue des Fleurs",
       "cp": "67000",
       "ville": "Strasbourg",
-      "prix": 1000,
+      "prix": 1100,
       "superficie": 60,
       "nb_pieces": 3,
       "description": "Bel appartement lumineux avec vue sur le parc",
@@ -66,7 +66,7 @@
       "adresse": "16 place du Martroi",
       "cp": "45300",
       "ville": "Pithiviers",
-      "prix": 400,
+      "prix": 380,
       "superficie": 28,
       "nb_pieces": 1,
       "description": "Appartement en hypercentre proche des commerces",
@@ -98,11 +98,18 @@
   ],
   "candidatures": [
     {
-      "id": 67521,
+      "id": 78015,
       "appartementId": 1,
-      "utilisateurId": 3,
-      "date": "2023-04-09T11:13:44.776Z",
-      "statut": "en_attente"
+      "utilisateurId": 1,
+      "date": "2023-04-10T17:41:41.937Z",
+      "statut": "refusee"
+    },
+    {
+      "id": 88096,
+      "appartementId": 687,
+      "utilisateurId": 2,
+      "date": "2023-04-10T17:41:45.670Z",
+      "statut": "acceptee"
     }
   ]
 }
