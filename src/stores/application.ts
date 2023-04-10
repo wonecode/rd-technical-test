@@ -44,8 +44,6 @@ export const useApplicationStore = defineStore({
         );
 
         this.applications = applicationsWithAppartementAndUser;
-
-        console.log(this.applications);
       } catch (error: any) {
         this.error = error;
       } finally {

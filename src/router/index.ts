@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import AccomodationsView from '../views/AccomodationsView.vue';
 import ApplicationsView from '../views/ApplicationsView.vue';
 import AccomodationDetailsView from '../views/AccomodationDetailsView.vue';
+import AccomodationsAdminView from '../views/AccomodationsAdminView.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -24,7 +25,7 @@ const router = createRouter({
     {
       path: '/admin/accomodations',
       name: 'admin-accomodations',
-      component: ApplicationsView,
+      component: AccomodationsAdminView,
     },
     {
       path: '/:catchAll(.*)*',

@@ -125,7 +125,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .table {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 5px;

@@ -30,7 +30,7 @@ export default {
         await this.addApplication({
           id: Math.floor(Math.random() * 100000),
           appartementId: this.accomodation.id,
-          utilisateurId: 2,
+          utilisateurId: Math.floor(Math.random() * (Math.ceil(3) - Math.floor(1) + 1)) + Math.floor(1),
           date: new Date(),
           statut: 'en_attente',
         })

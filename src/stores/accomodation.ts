@@ -60,5 +60,46 @@ export const useAccomodationStore = defineStore({
         this.loading = false;
       }
     },
+    async createAccomodation(accomodation: Accomodation) {
+      this.loading = true;
+      try {
+        const response = await fetch('http://localhost:3000/appartements', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(accomodation),
+        });
+        if (response.status === 201) {
+          this.accomodations.push(await response.json());
+        }
+      } catch (error: any) {
+        this.error = error;
+      } finally {
+        this.loading = false;
+      }
+    },
+    async updateAccomodation(accomodation: Accomodation) {
+      this.loading = true;
+      try {
+        const response = await fetch(`http://localhost:3000/appartements/${accomodation.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(accomodation),
+        });
+        if (response.status === 200) {
+          const index = this.accomodations.findIndex(
+            (accomodation) => accomodation.id === accomodation.id
+          );
+          this.accomodations.splice(index, 1, await response.json());
+        }
+      } catch (error: any) {
+        this.error = error;
+      } finally {
+        this.loading = false;
+      }
+    },
   },
 });
