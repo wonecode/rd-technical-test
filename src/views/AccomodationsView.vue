@@ -1,42 +1,3 @@
-<script lang="ts">
-import { storeToRefs } from 'pinia'
-import { useAccomodationStore } from '../stores/accomodation';
-import { InfoFilled } from '@element-plus/icons-vue';
-
-export default {
-  name: "AccomodationsView",
-  setup() {
-    const { accomodations, loading, error } = storeToRefs(useAccomodationStore())
-    const { fetchAccomodations, deleteAccomodation } = useAccomodationStore()
-
-    return {
-      accomodations,
-      loading,
-      error,
-      fetchAccomodations,
-      deleteAccomodation,
-    }
-  },
-  data() {
-    return {
-      InfoFilled,
-    }
-  },
-  async created() {
-    await this.fetchAccomodations()
-  },
-  methods: {
-    async deleteAccomodation(id: number) {
-      try {
-        await this.deleteAccomodation(id)
-      } catch (e) {
-        console.log(e)
-      }
-    }
-  }
-};
-</script>
-
 <template>
   <div class="px-16 text-left">
     <h1 class="mb-0">Liste des logements</h1>
@@ -75,6 +36,45 @@ export default {
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { storeToRefs } from 'pinia'
+import { useAccomodationStore } from '../stores/accomodation';
+import { InfoFilled } from '@element-plus/icons-vue';
+
+export default {
+  name: "AccomodationsView",
+  setup() {
+    const { accomodations, loading, error } = storeToRefs(useAccomodationStore())
+    const { fetchAccomodations, deleteAccomodation } = useAccomodationStore()
+
+    return {
+      accomodations,
+      loading,
+      error,
+      fetchAccomodations,
+      deleteAccomodation,
+    }
+  },
+  data() {
+    return {
+      InfoFilled,
+    }
+  },
+  async created() {
+    await this.fetchAccomodations()
+  },
+  methods: {
+    async deleteAccomodation(id: number) {
+      try {
+        await this.deleteAccomodation(id)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+  }
+};
+</script>
 
 <style scoped>
 .card {

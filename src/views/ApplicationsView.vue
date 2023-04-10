@@ -1,49 +1,3 @@
-<script lang="ts">
-import { storeToRefs } from 'pinia'
-import { useApplicationStore } from '../stores/application';
-import { useUserStore } from '../stores/user';
-import { ref } from 'vue'
-
-export default {
-  name: "ApplicationsView",
-  setup() {
-
-    const { applications, loading, error } = storeToRefs(useApplicationStore())
-    const { user } = storeToRefs(useUserStore())
-
-    const { fetchApplications, updateApplication } = useApplicationStore()
-    const { fetchUserById } = useUserStore()
-
-    return {
-      applications,
-      loading,
-      error,
-      fetchApplications,
-      updateApplication,
-      fetchUserById,
-      user
-    }
-  },
-  data() {
-    return {
-      dialogVisible: false,
-    };
-  },
-  async created() {
-    await this.fetchApplications()
-  },
-  methods: {
-    async handleDialog(id: number) {
-      await this.fetchUserById(id);
-      this.dialogVisible = true;
-    },
-    async handleStatus(id: number, statut: string) {
-      await this.updateApplication(id, statut);
-    }
-  }
-};
-</script>
-
 <template>
   <div class="px-16 text-left">
     <h1>Liste des candidatures</h1>
@@ -123,6 +77,51 @@ export default {
     </el-dialog>
   </div>
 </template>
+
+<script lang="ts">
+import { storeToRefs } from 'pinia'
+import { useApplicationStore } from '../stores/application';
+import { useUserStore } from '../stores/user';
+
+export default {
+  name: "ApplicationsView",
+  setup() {
+
+    const { applications, loading, error } = storeToRefs(useApplicationStore())
+    const { user } = storeToRefs(useUserStore())
+
+    const { fetchApplications, updateApplication } = useApplicationStore()
+    const { fetchUserById } = useUserStore()
+
+    return {
+      applications,
+      loading,
+      error,
+      fetchApplications,
+      updateApplication,
+      fetchUserById,
+      user
+    }
+  },
+  data() {
+    return {
+      dialogVisible: false,
+    };
+  },
+  async created() {
+    await this.fetchApplications()
+  },
+  methods: {
+    async handleDialog(id: number) {
+      await this.fetchUserById(id);
+      this.dialogVisible = true;
+    },
+    async handleStatus(id: number, statut: string) {
+      await this.updateApplication(id, statut);
+    }
+  }
+};
+</script>
 
 <style scoped>
 .table {

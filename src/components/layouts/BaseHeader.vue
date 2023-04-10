@@ -1,6 +1,3 @@
-<script lang="ts" setup>
-</script>
-
 <template>
   <el-menu class="el-menu-demo items-center" mode="horizontal" :ellipsis="false">
     <p class="text-lg ml-4 my-0"><span class="font-bold text-primary">RD</span> Immobilier</p>
@@ -27,8 +24,12 @@
           <el-icon>
             <HomeFilled />
           </el-icon>
-        Gestion des logements
-      </router-link>
-    </el-menu-item>
-  </el-sub-menu>
-</el-menu></template>
+          Gestion des logements
+        </router-link>
+      </el-menu-item>
+    </el-sub-menu>
+  </el-menu>
+</template>
+
+<script lang="ts" setup>
+</script>

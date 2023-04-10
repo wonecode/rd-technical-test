@@ -1,68 +1,3 @@
-<script lang="ts">
-import { storeToRefs } from 'pinia'
-import { useAccomodationStore } from '../stores/accomodation';
-import { useApplicationStore } from '../stores/application';
-import { InfoFilled } from '@element-plus/icons-vue';
-import AddUpdateAccomodationDialog from '../components/accomodation/AddUpdateAccomodationDialog.vue';
-
-export default {
-  name: "AccomodationsAdminView",
-  setup() {
-
-    const { accomodations, loading, error } = storeToRefs(useAccomodationStore())
-    const { applications } = storeToRefs(useApplicationStore())
-
-    const { fetchAccomodations, deleteAccomodation, fetchAccomodation } = useAccomodationStore()
-    const { fetchApplications } = useApplicationStore()
-
-    return {
-      accomodations,
-      applications,
-      loading,
-      error,
-      InfoFilled,
-      fetchAccomodations,
-      deleteAccomodation,
-      fetchApplications,
-      fetchAccomodation,
-    }
-  },
-  data() {
-    return {
-      dialogVisible: false,
-      dialogMode: '',
-    };
-  },
-  async created() {
-    await this.fetchAccomodations();
-    await this.fetchApplications();
-  },
-  methods: {
-    handleDelete(id: number) {
-      this.deleteAccomodation(id);
-    },
-    handleOpenDialog() {
-      this.dialogVisible = true;
-    },
-    handleCloseDialog() {
-      this.dialogVisible = false;
-    },
-    handleCreateAccomodation() {
-      this.dialogMode = 'add';
-      this.handleOpenDialog();
-    },
-    async handleUpdateAccomodation(id: string) {
-      await this.fetchAccomodation(id);
-      this.dialogMode = 'update';
-      this.handleOpenDialog();
-    },
-  },
-  components: {
-    AddUpdateAccomodationDialog,
-  },
-};
-</script>
-
 <template>
   <div class="px-16 text-left">
     <div class="flex items-center justify-between my-5">
@@ -142,6 +77,71 @@ export default {
     <AddUpdateAccomodationDialog v-model="dialogVisible" :mode="dialogMode" :handleCloseDialog="handleCloseDialog" />
   </div>
 </template>
+
+<script lang="ts">
+import { storeToRefs } from 'pinia'
+import { useAccomodationStore } from '../stores/accomodation';
+import { useApplicationStore } from '../stores/application';
+import { InfoFilled } from '@element-plus/icons-vue';
+import AddUpdateAccomodationDialog from '../components/accomodation/AddUpdateAccomodationDialog.vue';
+
+export default {
+  name: "AccomodationsAdminView",
+  setup() {
+
+    const { accomodations, loading, error } = storeToRefs(useAccomodationStore())
+    const { applications } = storeToRefs(useApplicationStore())
+
+    const { fetchAccomodations, deleteAccomodation, fetchAccomodation } = useAccomodationStore()
+    const { fetchApplications } = useApplicationStore()
+
+    return {
+      accomodations,
+      applications,
+      loading,
+      error,
+      InfoFilled,
+      fetchAccomodations,
+      deleteAccomodation,
+      fetchApplications,
+      fetchAccomodation,
+    }
+  },
+  data() {
+    return {
+      dialogVisible: false,
+      dialogMode: '',
+    };
+  },
+  async created() {
+    await this.fetchAccomodations();
+    await this.fetchApplications();
+  },
+  methods: {
+    handleDelete(id: number) {
+      this.deleteAccomodation(id);
+    },
+    handleOpenDialog() {
+      this.dialogVisible = true;
+    },
+    handleCloseDialog() {
+      this.dialogVisible = false;
+    },
+    handleCreateAccomodation() {
+      this.dialogMode = 'add';
+      this.handleOpenDialog();
+    },
+    async handleUpdateAccomodation(id: string) {
+      await this.fetchAccomodation(id);
+      this.dialogMode = 'update';
+      this.handleOpenDialog();
+    },
+  },
+  components: {
+    AddUpdateAccomodationDialog,
+  },
+};
+</script>
 
 <style>
 .table {

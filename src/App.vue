@@ -1,9 +1,3 @@
-<script lang="ts">
-export default {
-  name: 'App',
-}
-</script>
-
 <template>
   <el-config-provider namespace="ep">
     <BaseHeader />
@@ -11,6 +5,12 @@ export default {
     <router-view />
   </el-config-provider>
 </template>
+
+<script lang="ts">
+export default {
+  name: 'App',
+}
+</script>
 
 <style>
 </style>
